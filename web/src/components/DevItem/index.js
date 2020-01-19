@@ -2,7 +2,12 @@ import React from 'react';
 
 import './styles.css';
 
-function DevItem({ dev }) {
+function DevItem({ dev, handleDestroyDev }) {
+
+    async function handleDelete() {
+        await handleDestroyDev(dev._id);
+    }
+
     return (
         <li className="dev-item">
             <header>
@@ -13,7 +18,10 @@ function DevItem({ dev }) {
                 </div>
             </header>
             <p>{dev.bio}</p>
-            <a href={`https://github.com/${dev.github_username}`}>Acessar perfil no Github</a>
+            <div>
+                <a href={`https://github.com/${dev.github_username}`}>Access GitHub profile</a>
+                <button onClick={handleDelete} className="delete-buttom">Delete</button>
+            </div>
         </li>
     );
 }

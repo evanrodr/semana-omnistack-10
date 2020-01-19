@@ -11,7 +11,7 @@ const server = http.Server(app);
 
 setupWebsocket(server);
 
-mongoose.connect('mongodb+srv://<USERNAME>:<PASSWORD>@cluster0-2delb.mongodb.net/<DATABASE_NAME>?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://YOUR_USERNAME_IN_HERE:YOUR_PASSWORD_IN_HERE@cluster0-2delb.mongodb.net/YOUR_DATABASE?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

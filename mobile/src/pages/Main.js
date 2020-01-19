@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { KeyboardAvoidingView } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
 import { MaterialIcons } from '@expo/vector-icons'
@@ -109,7 +110,7 @@ function Main({ navigation }) {
             <View style={styles.searchForm}>
                 <TextInput
                     style={styles.searchInput}
-                    placeholder="Buscar devs por techs..."
+                    placeholder="Seach developers based on techs..."
                     placeholderTextColor="#999"
                     autoCapitalize="words"
                     autoCorrect={false}
@@ -118,6 +119,11 @@ function Main({ navigation }) {
                 />
                 <TouchableOpacity onPress={loadDevs} style={styles.loadButton}>
                     <MaterialIcons name="my-location" size={25} color="#FFF" />
+                </TouchableOpacity>
+            </View>
+            <View style={styles.signUp}>
+                <TouchableOpacity style={styles.signUpButtom} onPress={() => navigation.navigate('SignUp')}>
+                    <MaterialIcons name="account-circle" size={35} color="#FFF" />
                 </TouchableOpacity>
             </View>
         </>
@@ -132,9 +138,9 @@ const styles = StyleSheet.create({
     avatar: {
         width: 54,
         height: 54,
-        borderRadius: 4,
+        borderRadius: 50,
         borderWidth: 4,
-        borderColor: '#FFF'
+        borderColor: '#272932',
     },
 
     callout: {
@@ -167,8 +173,8 @@ const styles = StyleSheet.create({
     searchInput: {
         flex: 1,
         height: 50,
-        backgroundColor: '#FFF',
-        color: '#333',
+        backgroundColor: '#272932',
+        color: '#ededed',
         borderRadius: 25,
         paddingHorizontal: 20,
         fontSize: 16,
@@ -184,7 +190,37 @@ const styles = StyleSheet.create({
     loadButton: {
         width: 50,
         height: 50,
-        backgroundColor: '#8e4dff',
+        backgroundColor: '#272932',
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 15,
+        elevation: 20,
+    },
+
+    signUp: {
+        position: 'absolute',
+        bottom: 20,
+        left: 370,
+        right: 20,
+        zIndex: 5,
+        flexDirection: 'row',
+    },
+
+    signUpText: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 18,
+        color: 'white',
+        marginLeft: 5,
+    },
+
+    signUpButtom: {
+        flex: 1,
+        flexDirection: 'row',
+        width: 120,
+        height: 70,
+        backgroundColor: '#272932',
         borderRadius: 25,
         justifyContent: 'center',
         alignItems: 'center',

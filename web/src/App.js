@@ -27,6 +27,12 @@ function App() {
   }, [])
 
 
+  async function handleDestroyDev(id) {
+    let response = await api.delete(`/devs/${id}`);
+    response = await api.get('/devs');
+    setDevs(response.data);
+  }
+
   async function handleAddDev(data) {
     const response = await api.post('/devs', data);
     setDevs([...devs, response.data]);
@@ -35,13 +41,13 @@ function App() {
   return (
     <div id="app">
       <aside>
-        <strong>Cadastrar</strong>
+        <strong>Sign Up</strong>
         <DevForm onSubmit={handleAddDev} />
       </aside>
       <main>
         <ul>
           {devs.map(dev => (
-            <DevItem key={dev._id} dev={dev} />
+            <DevItem key={dev._id} dev={dev} handleDestroyDev={handleDestroyDev} />
           ))}
         </ul>
       </main>
